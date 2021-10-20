@@ -2,6 +2,9 @@
 
 open Graphics
 open Tetromino
+open Images
+open Png
+open OImages
 
 let rows = 20
 
@@ -40,6 +43,14 @@ let draw_outline board_pos =
 
 (* TODO: change to pasting a picture instead *)
 let color_cell color r c board_pos =
+  let () =
+    let img = Rgb24.create 1 1 in
+    Rgb24.set img 0 0 { Color.r = 255; g = 0; b = 0 };
+    Jpeg.save "sample.jpg" [] (Images.Rgb24 img)
+  in
+  let img = Png.load "png.png" [] in
+  let g = Graphic_image.of_image img in
+  draw_image g 0 0;
   set_color color;
   fill_rect
     ((c * tile_size) + fst board_pos)

@@ -1,3 +1,4 @@
+# include ~/local/lib/ocaml/camlimages/Makefile.config
 .PHONY: test check
 
 build:
